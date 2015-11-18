@@ -44,3 +44,7 @@ task clean, "Clean":
 
 task rebuild, "Rebuild release":
   deps clean, release
+
+task run, "Run debug version":
+  dep debug
+  exec "bin/devbootstrap_d"
