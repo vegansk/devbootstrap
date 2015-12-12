@@ -8,7 +8,7 @@ author      = "Anatoly Galiulin"
 description = "Developer tools bootstrap"
 license     = "GPLv3"
 
-requires "nim >= 0.12.1", "https://github.com/vegansk/nimshell#master"
+requires "nim >= 0.12.1", "https://github.com/vegansk/nimshell#master, nimfp >= 0.0.1"
 
 proc buildBase(debug = true, bin: string, src: string) =
   if not dirExists "bin":

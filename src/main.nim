@@ -1,4 +1,4 @@
-import nimshell, os, logging
+import nimshell, os, logging, fp.option
 
 when defined windows:
   import private/far_manager
@@ -36,19 +36,24 @@ elif defined linux:
   proc installNim =
     let nimRoot = appRoot() / "Nim"
     if nimRoot.dirExists:
-      info "Directory ", nimRoot, " already exists!"
+      info "Directory ", nimRoot, " already exists, skip installation!"
     else:
       createDir nimRoot
       setCurrentDir nimRoot
       >>! cmd"git clone https://github.com/vegansk/Nim ."
       >>! cmd"git checkout my"
       >>! cmd"./bootstrap.sh"
-      
+
+  proc installEmacs =
+    if not ?"emacs".which:
+      pkgInstall "emacs"
+    info "Emacs installed"
 
   proc installOnLinux() =
     installGit()
     installGcc()
     installNim()
+    installEmacs()
     
 when isMainModule:
   logging.addHandler newConsoleLogger()
