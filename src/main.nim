@@ -43,6 +43,10 @@ elif defined linux:
       >>! cmd"git clone https://github.com/vegansk/Nim ."
       >>! cmd"git checkout my"
       >>! cmd"./bootstrap.sh"
+      >>! cmd"""${nimRoot / "bin" / "nim"} ${nimRoot / "install_nimble.nims"}"""
+    if not ?"nim".which:
+      info "Nim not found in the PATH. Please add it:\n" &
+           "  export PATH=$PATH:", nimRoot / "bin"
 
   proc installEmacs =
     if not ?"emacs".which:
